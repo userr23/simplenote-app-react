@@ -9,7 +9,7 @@ export default function pdfGenerator ( itemsArray = [], sortDescending ) {
     if ( itemsArray.length > 0 ) {
         const arr       = sortDescending ? itemsArray : [ ...itemsArray ].reverse();
         const itemsList = arr.reduce( ( res, item ) => {
-            res += item.text + '\n\n';
+            res += item.added + '\n' + item.label + '\n\n';
             return res;
         }, '' );
 

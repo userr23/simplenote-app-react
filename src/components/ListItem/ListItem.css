@@ -1,10 +1,9 @@
-.list-item {
-    font-size: 1.25rem;
+hr {
+    margin: 1rem 0 0.5rem;
 }
 
-.list-item button {
-    width: 35px;
-    margin: 3px;
+.list-item {
+    font-size: 1.25rem;
 }
 
 .list-item-label {
@@ -14,14 +13,25 @@
     user-select: none;
 }
 
+.settings-block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+}
+
+.buttons-wrapper button {
+    width: 35px;
+    margin: 3px;
+}
+
 .list-item.omit .list-item-label {
     /*text-decoration: line-through;*/
-    font-size: 0.8em;
+    font-size: 1rem;
     /*font-style: italic;*/
     color: slategray;
 }
 
 .list-item.important .list-item-label {
     font-weight: bold;
-    color: steelblue;
 }

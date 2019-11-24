@@ -10,7 +10,7 @@ export default function ItemStatusFilter ( { filter, onFilterChange } ) {
 
     const buttons = buttonTypes.map( ( { name, label } ) => {
         const isActive    = filter === name;
-        const buttonClass = isActive ? 'btn-success' : 'btn-outline-secondary';
+        const buttonClass = isActive ? 'btn-info' : 'btn-outline-secondary';
         return (
             <button type="button"
                     className={`btn ${buttonClass}`}

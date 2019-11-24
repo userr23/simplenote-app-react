@@ -6,15 +6,20 @@ import SearchPanel      from '../SearchPanel';
 import ItemsList        from '../ItemsList';
 import ItemStatusFilter from '../ItemStatusFilter';
 import ItemAddForm      from '../ItemAddForm';
-/* import ItemDownloadForm      from '../../ItemDownloadForm'; */
+
+import Storage      from '../../utils/Storage';
+import pdfGenerator from '../../utils/pdfGenerator';
+
 
 const useStateWithLocalStorage = ( localStorageKey ) => {
-    const [ value, setValue ] = useState(
-        JSON.parse( localStorage.getItem( localStorageKey ) ) || []
-    );
+    if ( !localStorageKey ) {
+        throw new Error( 'LocalStorage key name must be provided to persist to localStorage' );
+    }
+
+    const [ value, setValue ] = useState( Storage.get( localStorageKey ) || [] );
 
     useEffect( () => {
-        localStorage.setItem( localStorageKey, JSON.stringify( value ) );
+        Storage.set( localStorageKey, value );
     } );
 
     return [ value, setValue ];
@@ -30,6 +35,7 @@ export default function App () {
         return {
             label,
             added    : `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+            edited   : '',
             important: false,
             omit     : false,
             id       : 'item-' + Date.now()
@@ -57,6 +63,18 @@ export default function App () {
                 newItem
             ];
         } );
+    };
+
+    const onItemsClear = () => {
+        setNotesData( () => {
+            return [];
+        } );
+    };
+
+    const onItemsPrint = () => {
+        const itemsToPrint = notesData.filter( el => el.omit === false );
+
+        pdfGenerator( itemsToPrint );
     };
 
     const toggleProperty = ( arr, id, propName ) => {
@@ -131,7 +149,10 @@ export default function App () {
             <AppHeader print={printCount} omit={omitCount} />
 
             <ItemAddForm
-                onItemAdded={onItemAdded} />
+                onItemAdded={onItemAdded}
+                onItemsClear={onItemsClear}
+                onItemsPrint={onItemsPrint}
+            />
 
             <div className="top-panel d-flex">
                 <SearchPanel
