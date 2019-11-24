@@ -8,10 +8,10 @@ const ExtractCssPlugin  = require( 'mini-css-extract-plugin' );
 const devMode = process.env.NODE_ENV !== 'production';
 
 const postcssLoader = {
-    loader: 'postcss-loader',
+    loader : 'postcss-loader',
     options: {
         sourceMap: devMode,
-        plugins: [
+        plugins  : [
             autoprefixer(),
             cssnano( { preset: 'default' } )
         ]
@@ -19,20 +19,20 @@ const postcssLoader = {
 };
 
 module.exports = {
-    entry  : {
+    entry    : {
         script: './src/index.js'
     },
-    output : {
+    output   : {
         publicPath: devMode ? '/' : '',
         path      : path.resolve( __dirname, './dest' )
     },
-    module : {
+    module   : {
         rules: [
             {
-                test   : /\.js$/,
+                test   : /\.(js)|(jsx)$/,
                 exclude: /(node_modules)/,
                 use    : {
-                    loader: 'babel-loader',
+                    loader : 'babel-loader',
                     options: {
                         presets: [ '@babel/preset-env', '@babel/react' ],
                         plugins: [
@@ -44,7 +44,7 @@ module.exports = {
             },
             {
                 test: /\.woff(2)?|ttf|eot|svg$/,
-                use: [
+                use : [
                     {
                         loader: 'file-loader',
                         /*options: {
@@ -56,7 +56,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [
+                use : [
                     devMode ? 'style-loader' : ExtractCssPlugin.loader,
 
                     {
@@ -68,7 +68,7 @@ module.exports = {
             },
             {
                 test: /\.(scss)|(sass)$/,
-                use: [
+                use : [
                     devMode
                         ? { loader: 'style-loader', options: { sourceMap: devMode } }
                         : ExtractCssPlugin.loader,
@@ -86,25 +86,23 @@ module.exports = {
             }
         ]
     },
-    plugins: [
+    plugins  : [
         new HtmlWebpackPlugin( { template: path.resolve( __dirname, './src/index.html' ) } ),
         new webpack.DefinePlugin( {
             NODE_ENV: JSON.stringify( process.env.NODE_ENV || 'develop' ),
         } ),
 
-        ...( devMode ? [
-
-            ] : [
+        ...( devMode ? [] : [
                 new ExtractCssPlugin( { filename: 'styles.css' } )
             ]
         )
     ],
-    mode: devMode ? 'development' : 'production',
-    devtool: devMode ? 'source-map' : false,
+    mode     : devMode ? 'development' : 'production',
+    devtool  : devMode ? 'source-map' : false,
     devServer: {
         hot               : true,
         contentBase       : './src',
-        port              : 8085,
+        port              : 8086,
         historyApiFallback: true
     }
 };

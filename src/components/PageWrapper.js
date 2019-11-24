@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 import styled    from 'styled-components';
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: ${props => props.template};
-    height: calc(100% - 56px);
-    overflow: hidden;
-    
-    @media(max-width: 1000px) {
-        display: block;
-        overflow: auto;
-    }
+    width: ${props => props.template};
+    max-width: 100vw;
+    padding: 0 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
 `;
 
 export default function PageWrapper ( { children, ...rest } ) {
@@ -28,5 +24,5 @@ PageWrapper.propTypes = {
 };
 
 PageWrapper.defaultProps = {
-    template: '2fr 3fr'
+    template: '40rem'
 };

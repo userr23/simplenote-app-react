@@ -1,0 +1,152 @@
+import React, { useState, useEffect } from 'react';
+
+import PageWrapper      from '../PageWrapper';
+import AppHeader        from '../AppHeader';
+import SearchPanel      from '../SearchPanel';
+import ItemsList        from '../ItemsList';
+import ItemStatusFilter from '../ItemStatusFilter';
+import ItemAddForm      from '../ItemAddForm';
+/* import ItemDownloadForm      from '../../ItemDownloadForm'; */
+
+const useStateWithLocalStorage = ( localStorageKey ) => {
+    const [ value, setValue ] = useState(
+        JSON.parse( localStorage.getItem( localStorageKey ) ) || []
+    );
+
+    useEffect( () => {
+        localStorage.setItem( localStorageKey, JSON.stringify( value ) );
+    } );
+
+    return [ value, setValue ];
+};
+
+export default function App () {
+    const [ notesData, setNotesData ] = useStateWithLocalStorage( 'myNotes' );
+    const [ term, setTerm ]           = useState( '' );
+    const [ filter, setFilter ]       = useState( 'all' );
+
+
+    const createItem = ( label ) => {
+        return {
+            label,
+            added    : `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
+            important: false,
+            omit     : false,
+            id       : 'item-' + Date.now()
+        };
+    };
+
+    const deleteItem = ( id ) => {
+        setNotesData( () => {
+            const idx = notesData.findIndex( el => el.id === id );
+
+            return [
+                ...notesData.slice( 0, idx ),
+                ...notesData.slice( idx + 1 )
+            ];
+
+        } );
+    };
+
+    const onItemAdded = ( text ) => {
+        const newItem = createItem( text );
+
+        setNotesData( () => {
+            return [
+                ...notesData,
+                newItem
+            ];
+        } );
+    };
+
+    const toggleProperty = ( arr, id, propName ) => {
+        const idx     = arr.findIndex( el => el.id === id );
+        const oldItem = arr[ idx ];
+        const newItem = { ...oldItem, [ propName ]: !oldItem[ propName ] };
+
+        return [
+            ...arr.slice( 0, idx ),
+            newItem,
+            ...arr.slice( idx + 1 )
+        ];
+    };
+
+    const onToggleImportant = ( id ) => {
+        setNotesData( () => {
+            return toggleProperty( notesData, id, 'important' );
+        } );
+    };
+
+    const onToggleOmit = ( id ) => {
+        setNotesData( () => {
+            return toggleProperty( notesData, id, 'omit' );
+        } );
+    };
+
+    const onSearchChange = ( word ) => {
+        setTerm( word );
+    };
+
+    const onFilterChange = ( f ) => {
+        setFilter( f );
+    };
+
+    const search = ( items, word ) => {
+        if ( word.length === 0 ) {
+            return items;
+        }
+
+        return items.filter( ( item ) => {
+            return item.label.toLowerCase().includes( word.toLowerCase() );
+        } );
+    };
+
+
+    const toFilter = ( items, f ) => {
+        switch ( f ) {
+            case 'all':
+                return items;
+            case 'print':
+                return items.filter( item => !item.omit );
+            case 'omit':
+                return items.filter( item => item.omit );
+            case 'important':
+                return items.filter( item => item.important );
+            default:
+                return items;
+        }
+    };
+
+
+    const visibleItems = toFilter(
+        search( notesData, term ), filter );
+
+    const omitCount = notesData
+        .filter( el => el.omit === true ).length;
+
+    const printCount = notesData.length - omitCount;
+
+    return (
+        <PageWrapper template='45rem'>
+            <AppHeader print={printCount} omit={omitCount} />
+
+            <ItemAddForm
+                onItemAdded={onItemAdded} />
+
+            <div className="top-panel d-flex">
+                <SearchPanel
+                    onSearchChange={onSearchChange} />
+                <ItemStatusFilter
+                    filter={filter}
+                    onFilterChange={onFilterChange}
+                />
+            </div>
+
+            <ItemsList
+                items={visibleItems}
+                onDeleted={deleteItem}
+                onToggleImportant={onToggleImportant}
+                onToggleOmit={onToggleOmit} />
+        </PageWrapper>
+    );
+}

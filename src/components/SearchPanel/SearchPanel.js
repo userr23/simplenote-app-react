@@ -17,4 +17,4 @@ export default function SearchPanel ( { onSearchChange } ) {
                onChange={onChangeTerm}
         />
     );
-};
+}
