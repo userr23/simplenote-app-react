@@ -3,12 +3,8 @@ hr {
 }
 
 .list-item {
-    font-size: 1.25rem;
-}
-
-.list-item-label {
+    font-size: 1.1rem;
     margin-left: 1.25rem;
-    line-height: 35px;
     cursor: pointer;
     user-select: none;
 }
@@ -16,22 +12,32 @@ hr {
 .settings-block {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     flex-wrap: wrap;
     font-size: 0.9rem;
 }
 
+.buttons-wrapper {
+    background-color: white;
+    border-radius: 0.2rem;
+}
+
 .buttons-wrapper button {
-    width: 35px;
+    width: 30px;
     margin: 3px;
 }
 
-.list-item.omit .list-item-label {
-    /*text-decoration: line-through;*/
-    font-size: 1rem;
-    /*font-style: italic;*/
+.list-group-item.omit {
     color: slategray;
+    background-color: #ECF2F4;
 }
 
-.list-item.important .list-item-label {
+.list-group-item.important {
+    background-color: #FEE3E2;
+}
+
+.list-item.important::before {
+    content: "! ";
     font-weight: bold;
 }
+

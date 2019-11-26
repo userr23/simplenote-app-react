@@ -1,31 +1,33 @@
-import React from 'react';
+import React               from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ListItem ( {
-                                       label, onDeleted,
+                                       id, label, onDeleted,
                                        onToggleImportant,
                                        onToggleOmit,
                                        omit, important, added, edited
                                    } ) {
 
-    let classNames      = 'list-item';
+    let labelClassNames = 'list-item';
+    let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
     let buttonOmitClass = 'btn btn-outline-dark btn-sm';
 
     if ( omit ) {
-        classNames += ' omit';
+        itemClassNames += ' omit';
         buttonOmitIcon  = 'print';
         buttonOmitClass = 'btn btn-outline-secondary btn-sm';
     }
     if ( important ) {
-        classNames += ' important';
+        itemClassNames += ' important';
+        labelClassNames += ' important';
     }
 
     return (
-        <div className={classNames}>
-            <span className="list-item-label"
+        <li id={id} className={itemClassNames}>
+            <span className={labelClassNames}
                   onClick={() => {
-                      }}>
+                  }}>
                 {label}
             </span>
             <hr />
@@ -66,6 +68,6 @@ export default function ListItem ( {
                     </button>
                 </span>
             </div>
-        </div>
+        </li>
     );
 }

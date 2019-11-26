@@ -4,5 +4,15 @@
 
 .top-panel {
     margin: 1rem 0;
+    flex-wrap: wrap;
 }
 
+@media screen and (max-width: 700px) {
+    :root {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 0.95rem;
+    }
+}

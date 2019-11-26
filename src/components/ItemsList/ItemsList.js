@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React    from 'react';
 import ListItem from '../ListItem';
 
 export default function ItemsList ( {
@@ -9,17 +8,16 @@ export default function ItemsList ( {
                                     } ) {
 
     const elements = items.map( ( item ) => {
+        const { id } = item;
 
-        const { id, ...itemProps } = item;
         return (
-            <li key={id} className="list-group-item">
-                <ListItem
-                    {...itemProps}
-                    onDeleted={() => onDeleted( id )}
-                    onToggleImportant={() => onToggleImportant( id )}
-                    onToggleOmit={() => onToggleOmit( id )}
-                />
-            </li>
+            <ListItem
+                {...item}
+                key={id}
+                onDeleted={() => onDeleted( id )}
+                onToggleImportant={() => onToggleImportant( id )}
+                onToggleOmit={() => onToggleOmit( id )}
+            />
         );
     } );
 
