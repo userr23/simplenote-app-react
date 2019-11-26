@@ -5,7 +5,7 @@ export default function AppHeader ( { print, omit } ) {
     return (
         <div className="app-header d-flex">
             <h1>
-                SimpleNotes
+                SimpleNote
                 <sup>
                     <FontAwesomeIcon icon={[ 'fab', 'react' ]} />
                 </sup>
