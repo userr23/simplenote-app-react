@@ -5,9 +5,10 @@ import styled    from 'styled-components';
 const Wrapper = styled.div`
     width: ${props => props.template};
     max-width: 90vw;
-    padding: 0 0.5rem;
+    padding: 1rem;
     margin-left: auto;
     margin-right: auto;
+    background-color: #484F56;
 `;
 
 export default function PageWrapper ( { children, ...rest } ) {

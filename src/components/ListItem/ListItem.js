@@ -11,12 +11,10 @@ export default function ListItem ( {
     let labelClassNames = 'list-item';
     let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
-    let buttonOmitClass = 'btn btn-outline-dark btn-sm';
 
     if ( omit ) {
         itemClassNames += ' omit';
-        buttonOmitIcon  = 'print';
-        buttonOmitClass = 'btn btn-outline-secondary btn-sm';
+        buttonOmitIcon = 'print';
     }
     if ( important ) {
         itemClassNames += ' important';
@@ -56,7 +54,7 @@ export default function ListItem ( {
 
                     <button type="button"
                             title="Omit"
-                            className={buttonOmitClass}
+                            className="btn btn-outline-secondary btn-sm"
                             onClick={onToggleOmit}>
                         <FontAwesomeIcon icon={buttonOmitIcon} />
                     </button>

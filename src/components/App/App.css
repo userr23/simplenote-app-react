@@ -2,6 +2,10 @@
     --item-color: rgba(216, 235, 255, 0.938);
 }
 
+body {
+    background-color: slategrey;
+}
+
 .top-panel {
     margin: 1rem 0;
     flex-wrap: wrap;

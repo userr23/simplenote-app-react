@@ -1,9 +1,11 @@
 hr {
-    margin: 1rem 0 0.5rem;
+    background-color: lightslategray;
+    margin: 0.5rem 0 0.3rem;
 }
 
 .list-item {
     font-size: 1.1rem;
+    line-height: 1.15;
     margin-left: 1.25rem;
     cursor: pointer;
     user-select: none;
@@ -17,27 +19,22 @@ hr {
     font-size: 0.9rem;
 }
 
-.buttons-wrapper {
-    background-color: white;
-    border-radius: 0.2rem;
-}
-
 .buttons-wrapper button {
+    height: 30px;
     width: 30px;
     margin: 3px;
+    color: white;
+    border-color: #848F9A;
 }
 
 .list-group-item.omit {
-    color: slategray;
-    background-color: #ECF2F4;
+    background-color: #545C64;
 }
 
 .list-group-item.important {
-    background-color: #FEE3E2;
+    padding-left: 0.77rem;
+    border-left-width: 0.3rem;
+    border-left-color: tomato;
 }
 
-.list-item.important::before {
-    content: "! ";
-    font-weight: bold;
-}
 

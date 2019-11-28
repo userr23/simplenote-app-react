@@ -5,8 +5,17 @@
 An application to make simple notes and export them to PDF.
 
 ## Quick testing
-Use "Add Item" button repeatedly without typing to generate a lot of test items.
+Use "Add Item" button repeatedly without typing to generate a lot of test notes.
 Then click the "Print to PDF" button to create and download the PDF file.
+
+## Features
+- Create custom note
+- Generate test note
+- Mark selected note as important
+- Disable selected note for export
+- Delete selected note
+- Delete all notes
+- Export all available notes to PDF
 
 ## Built with 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
@@ -14,3 +23,8 @@ Then click the "Print to PDF" button to create and download the PDF file.
 - [Bootstrap](http://getbootstrap.com/) - An open source toolkit for developing with HTML, CSS, and JS.
 - [jsPDF](https://github.com/MrRio/jsPDF) - A library to generate PDFs in JavaScript.
 
+## Author
+- [Anton Safronov](https://github.com/userr23/)
+
+## License
+This project is open source and available under the [MIT License](LICENSE).

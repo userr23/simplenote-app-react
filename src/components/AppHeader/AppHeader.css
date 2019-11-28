@@ -1,4 +1,5 @@
 .app-header {
+    flex-wrap: wrap;
     align-items: flex-end;
     margin-top: 1rem;
 }
@@ -8,6 +9,7 @@
     color: #99B3D5;
 }
 
-.app-header h6 {
-    color: slategrey;
+.app-header h5 {
+    font-size: 0.9rem;
+    color: #C4CCD0;
 }

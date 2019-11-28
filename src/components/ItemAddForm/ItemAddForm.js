@@ -28,13 +28,13 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
                 Add Item
             </button>
             <button type="button"
-                    className="btn btn-outline-danger"
+                    className="btn btn-danger"
                     onClick={() => onItemsClear()}
             >
                 Clear All
             </button>
             <button type="button"
-                    className="btn btn-outline-secondary"
+                    className="btn btn-secondary"
                     onClick={() => onItemsPrint()}
             >
                 Print to PDF

@@ -10,7 +10,7 @@ export default function AppHeader ( { print, omit } ) {
                     <FontAwesomeIcon icon={[ 'fab', 'react' ]} />
                 </sup>
             </h1>
-            {( omit !== 0 ) && <h6>{print} available to print, {omit} omitted</h6>}
+            {( omit !== 0 ) && <h5>{print} available to print, {omit} omitted</h5>}
         </div>
     );
 }
