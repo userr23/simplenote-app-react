@@ -1,6 +1,6 @@
 hr {
     background-color: lightslategray;
-    margin: 0.5rem 0 0.3rem;
+    margin: 1rem 0 0.3rem;
 }
 
 .list-item {
@@ -17,23 +17,23 @@ hr {
     align-items: flex-end;
     flex-wrap: wrap;
     font-size: 0.9rem;
+    color: lightslategrey;
 }
 
 .buttons-wrapper button {
     height: 30px;
     width: 30px;
     margin: 3px;
-    color: white;
     border-color: #848F9A;
 }
 
 .list-group-item.omit {
-    background-color: #545C64;
+    background-color: #525A62;
 }
 
 .list-group-item.important {
-    padding-left: 0.77rem;
-    border-left-width: 0.3rem;
+    padding-left: 0.5rem;
+    border-left-width: 0.5rem;
     border-left-color: tomato;
 }
 

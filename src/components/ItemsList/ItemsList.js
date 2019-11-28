@@ -2,7 +2,7 @@ import React    from 'react';
 import ListItem from '../ListItem';
 
 export default function ItemsList ( {
-                                        items, onDeleted,
+                                        items, onEdit, onDeleted,
                                         onToggleImportant,
                                         onToggleOmit
                                     } ) {
@@ -14,6 +14,7 @@ export default function ItemsList ( {
             <ListItem
                 {...item}
                 key={id}
+                onEdit={() => onEdit( id )}
                 onDeleted={() => onDeleted( id )}
                 onToggleImportant={() => onToggleImportant( id )}
                 onToggleOmit={() => onToggleOmit( id )}

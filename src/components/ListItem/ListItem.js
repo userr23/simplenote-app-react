@@ -2,7 +2,7 @@ import React               from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ListItem ( {
-                                       id, label, onDeleted,
+                                       id, label, onEdit, onDeleted,
                                        onToggleImportant,
                                        onToggleOmit,
                                        omit, important, added, edited
@@ -41,8 +41,7 @@ export default function ListItem ( {
                 <span className="buttons-wrapper">
                     <button type="button"
                             className="btn btn-outline-success btn-sm"
-                            onClick={() => {
-                            }}>
+                            onClick={onEdit}>
                         <FontAwesomeIcon icon="edit" />
                     </button>
 

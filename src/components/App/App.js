@@ -42,6 +42,23 @@ export default function App () {
         };
     };
 
+    const editItem = ( id ) => {
+        const idx              = notesData.findIndex( el => el.id === id );
+        const [ selectedItem ] = notesData.slice( idx, idx + 1 );
+
+        selectedItem.label  = 'text was edited!!!';
+        selectedItem.edited = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
+
+        setNotesData( () => {
+            return [
+                ...notesData.slice( 0, idx ),
+                selectedItem,
+                ...notesData.slice( idx + 1 )
+            ];
+
+        } );
+    };
+
     const deleteItem = ( id ) => {
         setNotesData( () => {
             const idx = notesData.findIndex( el => el.id === id );
@@ -64,6 +81,7 @@ export default function App () {
             ];
         } );
     };
+
 
     const onItemsClear = () => {
         setNotesData( () => {
@@ -135,18 +153,18 @@ export default function App () {
         }
     };
 
-
     const visibleItems = toFilter(
         search( notesData, term ), filter );
 
     const omitCount = notesData
         .filter( el => el.omit === true ).length;
 
-    const printCount = notesData.length - omitCount;
+    const totalCount = notesData.length;
+    const printCount = totalCount - omitCount;
 
     return (
         <PageWrapper template='45rem'>
-            <AppHeader print={printCount} omit={omitCount} />
+            <AppHeader print={printCount} omit={omitCount} total={totalCount} />
 
             <ItemAddForm
                 onItemAdded={onItemAdded}
@@ -165,6 +183,7 @@ export default function App () {
 
             <ItemsList
                 items={visibleItems}
+                onEdit={editItem}
                 onDeleted={deleteItem}
                 onToggleImportant={onToggleImportant}
                 onToggleOmit={onToggleOmit} />
