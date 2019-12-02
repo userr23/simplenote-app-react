@@ -36,17 +36,18 @@ export default function App () {
             label,
             added    : `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
             edited   : '',
+            edit     : false,
             important: false,
             omit     : false,
             id       : 'item-' + Date.now()
         };
     };
 
-    const editItem = ( id ) => {
+    const editItem = ( id, text ) => {
         const idx              = notesData.findIndex( el => el.id === id );
         const [ selectedItem ] = notesData.slice( idx, idx + 1 );
 
-        selectedItem.label  = 'text was edited!!!';
+        selectedItem.label  = text;
         selectedItem.edited = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`;
 
         setNotesData( () => {
@@ -55,8 +56,8 @@ export default function App () {
                 selectedItem,
                 ...notesData.slice( idx + 1 )
             ];
-
         } );
+        onToggleEdit( id );
     };
 
     const deleteItem = ( id ) => {
@@ -110,6 +111,12 @@ export default function App () {
     const onToggleImportant = ( id ) => {
         setNotesData( () => {
             return toggleProperty( notesData, id, 'important' );
+        } );
+    };
+
+    const onToggleEdit = ( id ) => {
+        setNotesData( () => {
+            return toggleProperty( notesData, id, 'edit' );
         } );
     };
 
@@ -183,10 +190,12 @@ export default function App () {
 
             <ItemsList
                 items={visibleItems}
-                onEdit={editItem}
+                onEditLabel={editItem}
                 onDeleted={deleteItem}
+                onToggleEdit={onToggleEdit}
                 onToggleImportant={onToggleImportant}
-                onToggleOmit={onToggleOmit} />
+                onToggleOmit={onToggleOmit}
+            />
         </PageWrapper>
     );
 }

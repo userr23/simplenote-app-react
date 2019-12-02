@@ -1,16 +1,22 @@
-import React               from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Input               from '../Input';
 
 export default function ListItem ( {
-                                       id, label, onEdit, onDeleted,
+                                       id, label, onDeleted, onEditLabel,
                                        onToggleImportant,
-                                       onToggleOmit,
+                                       onToggleOmit, onToggleEdit, edit,
                                        omit, important, added, edited
                                    } ) {
+
+    const onEdit = ( e ) => {
+        onEditLabel( id, e.target.value );
+    };
 
     let labelClassNames = 'list-item';
     let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
+    let labelContainer;
 
     if ( omit ) {
         itemClassNames += ' omit';
@@ -21,13 +27,21 @@ export default function ListItem ( {
         labelClassNames += ' important';
     }
 
+    if ( edit ) {
+        labelContainer = ( <Input
+            value={label}
+            placeholder="Type your note here"
+            disabled="true"
+            onChange={onEdit}
+        /> );
+    } else {
+        labelContainer = <span className={labelClassNames}>{label}</span>;
+
+    }
+
     return (
         <li id={id} className={itemClassNames}>
-            <span className={labelClassNames}
-                  onClick={() => {
-                  }}>
-                {label}
-            </span>
+            {labelContainer}
             <hr />
 
             <div className="settings-block">
@@ -38,10 +52,10 @@ export default function ListItem ( {
                 <span>
                     Edited: {edited}
                 </span>}
-                <span className="buttons-wrapper">
+                <div className="buttons-wrapper">
                     <button type="button"
                             className="btn btn-outline-success btn-sm"
-                            onClick={onEdit}>
+                            onClick={onToggleEdit}>
                         <FontAwesomeIcon icon="edit" />
                     </button>
 
@@ -63,7 +77,7 @@ export default function ListItem ( {
                             onClick={onDeleted}>
                         <FontAwesomeIcon icon="trash-alt" />
                     </button>
-                </span>
+                </div>
             </div>
         </li>
     );

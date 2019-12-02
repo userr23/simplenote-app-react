@@ -22,24 +22,25 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
                 disabled="true"
                 onChange={e => setLabel( e.target.value )}
             />
-            <button type="submit"
-                    className="btn btn-success"
-            >
-                Add Item
-            </button>
-            <button type="button"
-                    className="btn btn-danger"
-                    onClick={() => onItemsClear()}
-            >
-                Clear All
-            </button>
-            <button type="button"
-                    className="btn btn-secondary"
-                    onClick={() => onItemsPrint()}
-            >
-                Print to PDF
-            </button>
-
+            <div>
+                <button type="submit"
+                        className="btn btn-success"
+                >
+                    Add Item
+                </button>
+                <button type="button"
+                        className="btn btn-danger"
+                        onClick={() => onItemsClear()}
+                >
+                    Clear All
+                </button>
+                <button type="button"
+                        className="btn btn-secondary"
+                        onClick={() => onItemsPrint()}
+                >
+                    Print to PDF
+                </button>
+            </div>
         </form>
     );
 }

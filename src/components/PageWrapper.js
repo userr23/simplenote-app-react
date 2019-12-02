@@ -4,7 +4,7 @@ import styled    from 'styled-components';
 
 const Wrapper = styled.div`
     width: ${props => props.template};
-    max-width: 90vw;
+    max-width: 100vw;
     padding: 1rem;
     margin-left: auto;
     margin-right: auto;
