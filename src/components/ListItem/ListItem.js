@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input               from '../Input';
 
@@ -9,8 +9,10 @@ export default function ListItem ( {
                                        omit, important, added, edited
                                    } ) {
 
-    const onEdit = ( e ) => {
-        onEditLabel( id, e.target.value );
+    const [ value, setValue ] = useState( label );
+
+    const onFinish = () => {
+        onEditLabel( id, value );
     };
 
     let labelClassNames = 'list-item';
@@ -29,10 +31,10 @@ export default function ListItem ( {
 
     if ( edit ) {
         labelContainer = ( <Input
-            value={label}
+            value={value}
             placeholder="Type your note here"
-            disabled="true"
-            onChange={onEdit}
+            onChange={e => setValue( e.target.value )}
+            onBlur={onFinish}
         /> );
     } else {
         labelContainer = <span className={labelClassNames}>{label}</span>;

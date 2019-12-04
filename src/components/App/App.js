@@ -165,7 +165,6 @@ export default function App () {
 
     const omitCount = notesData
         .filter( el => el.omit === true ).length;
-
     const totalCount = notesData.length;
     const printCount = totalCount - omitCount;
 
