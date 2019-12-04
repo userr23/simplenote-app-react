@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Input               from '../Input';
 
 export default function ListItem ( {
                                        id, label, onDeleted, onEditLabel,
@@ -18,6 +17,7 @@ export default function ListItem ( {
     let labelClassNames = 'list-item';
     let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
+    let buttonEditIcon  = 'edit';
     let labelContainer;
 
     if ( omit ) {
@@ -30,7 +30,12 @@ export default function ListItem ( {
     }
 
     if ( edit ) {
-        labelContainer = ( <Input
+        itemClassNames += ' edit';
+        buttonEditIcon = 'times';
+    }
+
+    if ( edit ) {
+        labelContainer = ( <textarea
             value={value}
             placeholder="Type your note here"
             onChange={e => setValue( e.target.value )}
@@ -58,7 +63,7 @@ export default function ListItem ( {
                     <button type="button"
                             className="btn btn-outline-success btn-sm"
                             onClick={onToggleEdit}>
-                        <FontAwesomeIcon icon="edit" />
+                        <FontAwesomeIcon icon={buttonEditIcon} />
                     </button>
 
                     <button type="button"

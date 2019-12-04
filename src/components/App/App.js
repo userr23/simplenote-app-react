@@ -57,7 +57,6 @@ export default function App () {
                 ...notesData.slice( idx + 1 )
             ];
         } );
-        onToggleEdit( id );
     };
 
     const deleteItem = ( id ) => {
@@ -115,9 +114,13 @@ export default function App () {
     };
 
     const onToggleEdit = ( id ) => {
-        setNotesData( () => {
-            return toggleProperty( notesData, id, 'edit' );
-        } );
+        const [ editingItem ] = notesData.filter( el => el.edit );
+
+        if ( !editingItem || editingItem.id === id ) {
+            setNotesData( () => {
+                return toggleProperty( notesData, id, 'edit' );
+            } );
+        }
     };
 
     const onToggleOmit = ( id ) => {
@@ -163,7 +166,7 @@ export default function App () {
     const visibleItems = toFilter(
         search( notesData, term ), filter );
 
-    const omitCount = notesData
+    const omitCount  = notesData
         .filter( el => el.omit === true ).length;
     const totalCount = notesData.length;
     const printCount = totalCount - omitCount;

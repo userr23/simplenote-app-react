@@ -19,7 +19,6 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
             <Input
                 value={label}
                 placeholder="Type your note here"
-                disabled="true"
                 onChange={e => setLabel( e.target.value )}
             />
             <div>

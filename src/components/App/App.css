@@ -16,6 +16,10 @@ body {
         font-size: 14px;
     }
 
+    body {
+        background-color: #484F56;
+    }
+
     button {
         font-size: 0.95rem;
     }

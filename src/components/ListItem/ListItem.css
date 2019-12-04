@@ -31,10 +31,19 @@ hr {
     background-color: #525A62;
 }
 
+.list-group-item.edit {
+    background-color: #243C3C;
+    font-size: 1.1em;
+}
+
 .list-group-item.important {
     padding-left: 0.5rem;
     border-left-width: 0.5rem;
     border-left-color: tomato;
 }
 
-
+.list-group-item.edit textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 10rem;
+}
