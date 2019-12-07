@@ -10,15 +10,33 @@ export default function ListItem ( {
 
     const [ value, setValue ] = useState( label );
 
-    const onFinish = () => {
-        onEditLabel( id, value );
-    };
-
     let labelClassNames = 'list-item';
+    let footerClassName = '';
     let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
     let buttonEditIcon  = 'edit';
     let labelContainer;
+
+    const onEdit = () => {
+        if ( !edit ) {
+            onToggleEdit( id );
+        }
+    };
+
+    const onSuccess = () => {
+        if ( label === value ) {
+            onToggleEdit( id );
+        } else {
+            onEditLabel( id, value );
+            onToggleEdit( id );
+        }
+    };
+
+    const onReset = () => {
+        setValue( label );
+        onToggleEdit( id );
+    };
+
 
     if ( omit ) {
         itemClassNames += ' omit';
@@ -31,16 +49,30 @@ export default function ListItem ( {
 
     if ( edit ) {
         itemClassNames += ' edit';
-        buttonEditIcon = 'times';
+        footerClassName = 'invisible';
+        buttonEditIcon  = 'check';
     }
 
     if ( edit ) {
-        labelContainer = ( <textarea
-            value={value}
-            placeholder="Type your note here"
-            onChange={e => setValue( e.target.value )}
-            onBlur={onFinish}
-        /> );
+        labelContainer = ( <div>
+            <textarea
+                value={value}
+                placeholder="Type your note here"
+                onChange={e => setValue( e.target.value )}
+            />
+            <div className="buttons-wrapper">
+                <button type="button"
+                        className="btn btn-outline-success btn-sm"
+                        onClick={onSuccess}>
+                    <FontAwesomeIcon icon="check" />
+                </button>
+                <button type="button"
+                        className="btn btn-outline-danger btn-sm"
+                        onClick={onReset}>
+                    <FontAwesomeIcon icon="ban" />
+                </button>
+            </div>
+        </div> );
     } else {
         labelContainer = <span className={labelClassNames}>{label}</span>;
 
@@ -49,41 +81,43 @@ export default function ListItem ( {
     return (
         <li id={id} className={itemClassNames}>
             {labelContainer}
-            <hr />
 
-            <div className="settings-block">
-                <span>
+            <div className={footerClassName}>
+                <hr />
+                <div className="settings-block">
+                    <span>
                     Added: {added}
-                </span>
-                {edited &&
-                <span>
+                    </span>
+                    {edited &&
+                    <span>
                     Edited: {edited}
-                </span>}
-                <div className="buttons-wrapper">
-                    <button type="button"
-                            className="btn btn-outline-success btn-sm"
-                            onClick={onToggleEdit}>
-                        <FontAwesomeIcon icon={buttonEditIcon} />
-                    </button>
+                    </span>}
+                    <div className="buttons-wrapper">
+                        <button type="button"
+                                className="btn btn-outline-success btn-sm"
+                                onClick={onEdit}>
+                            <FontAwesomeIcon icon={buttonEditIcon} />
+                        </button>
 
-                    <button type="button"
-                            className="btn btn-outline-warning btn-sm"
-                            onClick={onToggleImportant}>
-                        <FontAwesomeIcon icon="exclamation" />
-                    </button>
+                        <button type="button"
+                                className="btn btn-outline-warning btn-sm"
+                                onClick={onToggleImportant}>
+                            <FontAwesomeIcon icon="exclamation" />
+                        </button>
 
-                    <button type="button"
-                            title="Omit"
-                            className="btn btn-outline-secondary btn-sm"
-                            onClick={onToggleOmit}>
-                        <FontAwesomeIcon icon={buttonOmitIcon} />
-                    </button>
+                        <button type="button"
+                                title="Omit"
+                                className="btn btn-outline-secondary btn-sm"
+                                onClick={onToggleOmit}>
+                            <FontAwesomeIcon icon={buttonOmitIcon} />
+                        </button>
 
-                    <button type="button"
-                            className="btn btn-outline-danger btn-sm"
-                            onClick={onDeleted}>
-                        <FontAwesomeIcon icon="trash-alt" />
-                    </button>
+                        <button type="button"
+                                className="btn btn-outline-danger btn-sm"
+                                onClick={onDeleted}>
+                            <FontAwesomeIcon icon="trash-alt" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </li>

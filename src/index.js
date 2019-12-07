@@ -6,12 +6,14 @@ import {
     faExclamation,
     faTrashAlt,
     faPrint,
-    faTimes
+    faTimes,
+    faCheck,
+    faBan
 }                  from '@fortawesome/free-solid-svg-icons';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-library.add( faEdit, faExclamation, faTrashAlt, faPrint, faTimes, faReact );
+library.add( faEdit, faExclamation, faTrashAlt, faPrint, faTimes, faCheck, faBan, faReact );
 
 import App from './components/App';
 

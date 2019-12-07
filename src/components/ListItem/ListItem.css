@@ -47,3 +47,7 @@ hr {
     box-sizing: border-box;
     min-height: 10rem;
 }
+
+.invisible {
+    display: none;
+}
