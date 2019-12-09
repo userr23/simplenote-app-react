@@ -14,6 +14,7 @@ export default function ListItem ( {
     let footerClassName = '';
     let itemClassNames  = 'list-group-item';
     let buttonOmitIcon  = 'times';
+    let buttonImportantClassName  = 'btn btn-outline-warning btn-sm';
     let buttonEditIcon  = 'edit';
     let labelContainer;
 
@@ -45,6 +46,7 @@ export default function ListItem ( {
     if ( important ) {
         itemClassNames += ' important';
         labelClassNames += ' important';
+        buttonImportantClassName = 'btn btn-warning btn-sm';
     }
 
     if ( edit ) {
@@ -54,7 +56,7 @@ export default function ListItem ( {
     }
 
     if ( edit ) {
-        labelContainer = ( <div>
+        labelContainer = ( <div className="edit-mode-container">
             <textarea
                 value={value}
                 placeholder="Type your note here"
@@ -62,12 +64,12 @@ export default function ListItem ( {
             />
             <div className="buttons-wrapper">
                 <button type="button"
-                        className="btn btn-outline-success btn-sm"
+                        className="btn btn-success btn-sm"
                         onClick={onSuccess}>
                     <FontAwesomeIcon icon="check" />
                 </button>
                 <button type="button"
-                        className="btn btn-outline-danger btn-sm"
+                        className="btn btn-danger btn-sm"
                         onClick={onReset}>
                     <FontAwesomeIcon icon="ban" />
                 </button>
@@ -100,7 +102,7 @@ export default function ListItem ( {
                         </button>
 
                         <button type="button"
-                                className="btn btn-outline-warning btn-sm"
+                                className={buttonImportantClassName}
                                 onClick={onToggleImportant}>
                             <FontAwesomeIcon icon="exclamation" />
                         </button>
