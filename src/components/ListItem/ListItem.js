@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React               from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ItemEditForm        from '../ItemEditForm';
 
 export default function ListItem ( {
                                        id, label, onDeleted, onEditLabel,
@@ -8,14 +9,12 @@ export default function ListItem ( {
                                        omit, important, added, edited
                                    } ) {
 
-    const [ value, setValue ] = useState( label );
-
-    let labelClassNames = 'list-item';
-    let footerClassName = '';
-    let itemClassNames  = 'list-group-item';
-    let buttonOmitIcon  = 'times';
-    let buttonImportantClassName  = 'btn btn-outline-warning btn-sm';
-    let buttonEditIcon  = 'edit';
+    let labelClassNames          = 'list-item';
+    let footerClassName          = '';
+    let itemClassNames           = 'list-group-item';
+    let buttonOmitIcon           = 'times';
+    let buttonImportantClassName = 'btn btn-outline-warning btn-sm';
+    let buttonEditIcon           = 'edit';
     let labelContainer;
 
     const onEdit = () => {
@@ -23,21 +22,6 @@ export default function ListItem ( {
             onToggleEdit( id );
         }
     };
-
-    const onSuccess = () => {
-        if ( label === value ) {
-            onToggleEdit( id );
-        } else {
-            onEditLabel( id, value );
-            onToggleEdit( id );
-        }
-    };
-
-    const onReset = () => {
-        setValue( label );
-        onToggleEdit( id );
-    };
-
 
     if ( omit ) {
         itemClassNames += ' omit';
@@ -56,25 +40,12 @@ export default function ListItem ( {
     }
 
     if ( edit ) {
-        labelContainer = ( <div className="edit-mode-container">
-            <textarea
-                value={value}
-                placeholder="Type your note here"
-                onChange={e => setValue( e.target.value )}
-            />
-            <div className="buttons-wrapper">
-                <button type="button"
-                        className="btn btn-success btn-sm"
-                        onClick={onSuccess}>
-                    <FontAwesomeIcon icon="check" />
-                </button>
-                <button type="button"
-                        className="btn btn-danger btn-sm"
-                        onClick={onReset}>
-                    <FontAwesomeIcon icon="ban" />
-                </button>
-            </div>
-        </div> );
+        labelContainer = ( <ItemEditForm
+            id={id}
+            label={label}
+            onEditLabel={onEditLabel}
+            onToggleEdit={onToggleEdit}
+        /> );
     } else {
         labelContainer = <span className={labelClassNames}>{label}</span>;
 
