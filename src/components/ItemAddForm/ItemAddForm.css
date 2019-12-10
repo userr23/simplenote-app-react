@@ -7,6 +7,7 @@
 .item-add-form input {
     width: auto;
     flex-grow: 1;
+    margin-bottom: 0.2rem;
 }
 
 .item-add-form button {

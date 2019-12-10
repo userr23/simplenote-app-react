@@ -1,9 +1,3 @@
-.app-header {
-    flex-wrap: wrap;
-    align-items: flex-end;
-    margin-top: 1rem;
-}
-
 .app-header h1 {
     flex-grow: 1;
     color: #99B3D5;
