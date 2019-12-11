@@ -23,7 +23,7 @@ export default function ItemStatusFilter ( { filter, onFilterChange } ) {
     } );
 
     return (
-        <div className="btn-group">
+        <div className="btn-group filter">
             {buttons}
         </div>
     );

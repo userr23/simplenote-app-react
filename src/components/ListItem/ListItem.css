@@ -41,13 +41,6 @@ hr {
     font-size: 1.1em;
 }
 
-.edit-mode-container button {
-    height: 30px;
-    width: 55px;
-    margin: 0.3rem 0 0.3rem 0.3rem;
-    border-color: #2E4B70;
-}
-
 .list-group-item.important {
     padding-left: 0.6rem;
     border-left-width: 0.4rem;
