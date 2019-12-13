@@ -1,4 +1,5 @@
-import React from 'react';
+import React          from 'react';
+import FormActionLine from '../FormActionLine';
 
 export default function ItemStatusFilter ( { filter, onFilterChange } ) {
     const buttonTypes = [
@@ -8,23 +9,23 @@ export default function ItemStatusFilter ( { filter, onFilterChange } ) {
         { name: 'important', label: 'Important' }
     ];
 
-    const buttons = buttonTypes.map( ( { name, label } ) => {
+    const actions = buttonTypes.map( ( { name, label } ) => {
         const isActive    = filter === name;
-        const buttonClass = isActive ? 'btn-info' : 'btn-outline-secondary';
-        return (
-            <button type="button"
-                    className={`btn ${buttonClass}`}
-                    key={name}
-                    onClick={() => onFilterChange( name )}
-            >
-                {label}
-            </button>
-        );
+        const buttonClass = isActive ? 'info' : 'outline-secondary';
+        return ( {
+            id      : name,
+            type    : buttonClass,
+            text    : label,
+            onClick : () => {
+                onFilterChange( name );
+            },
+            disabled: false
+        } );
     } );
 
     return (
-        <div className="btn-group filter">
-            {buttons}
-        </div>
+        <FormActionLine
+            actions={actions}
+        />
     );
 }

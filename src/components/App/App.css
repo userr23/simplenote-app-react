@@ -6,11 +6,6 @@ body {
     background-color: slategrey;
 }
 
-.top-panel {
-    margin: 1rem -0.2rem;
-    flex-wrap: wrap;
-}
-
 @media screen and (max-width: 700px) {
     :root {
         font-size: 14px;

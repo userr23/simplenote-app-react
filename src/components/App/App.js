@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import PageWrapper      from '../PageWrapper';
-import AppHeader        from '../AppHeader';
-import SearchPanel      from '../SearchPanel';
-import ItemsList        from '../ItemsList';
-import ItemStatusFilter from '../ItemStatusFilter';
-import ItemAddForm      from '../ItemAddForm';
+import PageWrapper from '../PageWrapper';
+import AppHeader   from '../AppHeader';
+import FilterPanel from '../FilterPanel';
+import ItemsList   from '../ItemsList';
+import ItemAddForm from '../ItemAddForm';
 
 import Storage      from '../../utils/Storage';
 import pdfGenerator from '../../utils/pdfGenerator';
@@ -181,14 +180,11 @@ export default function App () {
                 onItemsPrint={onItemsPrint}
             />
 
-            <div className="top-panel d-flex">
-                <SearchPanel
-                    onSearchChange={onSearchChange} />
-                <ItemStatusFilter
-                    filter={filter}
-                    onFilterChange={onFilterChange}
-                />
-            </div>
+            <FilterPanel
+                onSearchChange={onSearchChange}
+                filter={filter}
+                onFilterChange={onFilterChange}
+            />
 
             <ItemsList
                 items={visibleItems}

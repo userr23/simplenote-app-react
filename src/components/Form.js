@@ -1,15 +1,19 @@
 import React  from 'react';
 import styled from 'styled-components';
 
-const Form = styled.form`
-    width: 100%;
+const StyledForm = styled.form`
+    display: flex;
+    flex-wrap: wrap;
 `;
 
-export default function form ( { children } ) {
+export default function Form ( { className, children } ) {
     return (
-        <Form onSubmit={preventDefault}>
+        <StyledForm
+            className={className}
+            onSubmit={preventDefault}
+        >
             {children}
-        </Form>
+        </StyledForm>
     );
 }
 

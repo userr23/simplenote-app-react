@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Input               from '../Input';
 
 export default function SearchPanel ( { onSearchChange } ) {
 
@@ -10,11 +11,11 @@ export default function SearchPanel ( { onSearchChange } ) {
     };
 
     return (
-        <input type="text"
-               className="form-control search-input"
-               placeholder="type to search"
-               value={term}
-               onChange={onChangeTerm}
+        <Input
+            value={term}
+            className="form-control search-input"
+            placeholder="Type to search"
+            onChange={onChangeTerm}
         />
     );
 }

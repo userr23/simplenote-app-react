@@ -3,6 +3,13 @@ import Form                from '../Form';
 import FormActionLine      from '../FormActionLine';
 import Input               from '../Input';
 import loremGenerator      from '../../utils/loremGenerator';
+import styled              from 'styled-components';
+
+const AddForm = styled( Form )`
+    margin: 1rem 0 0;
+    padding: 2rem 0.5rem;
+    background-color: #23333F;
+`;
 
 export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint } ) {
 
@@ -39,7 +46,7 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
     ];
 
     return (
-        <Form>
+        <AddForm>
             <Input
                 value={label}
                 placeholder="Type your note here"
@@ -48,7 +55,7 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
             <FormActionLine
                 actions={actions}
             />
-        </Form>
+        </AddForm>
 
     );
 }
