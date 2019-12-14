@@ -4,7 +4,7 @@ import ListItem from '../ListItem';
 export default function ItemsList ( {
                                         items, onEditLabel, onDeleted,
                                         onToggleImportant, onToggleEdit,
-                                        onToggleOmit
+                                        onToggleOmit, sortDescending
                                     } ) {
 
     const elements = items.map( ( item ) => {
@@ -23,9 +23,11 @@ export default function ItemsList ( {
         );
     } );
 
+    const sortedElements = sortDescending ? [ ...elements ].reverse() : elements;
+
     return (
         <ul className="list-group items-list">
-            {elements}
+            {sortedElements}
         </ul>
     );
 }

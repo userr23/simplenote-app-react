@@ -4,14 +4,25 @@ import styled              from 'styled-components';
 import PropTypes           from 'prop-types';
 
 const Wrapper = styled.div`
+    display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     margin-top: 1rem;
+    
+    h1 {
+    flex-grow: 1;
+    color: #99B3D5;
+    }
+
+    h5 {
+    font-size: 0.9rem;
+    color: #C4CCD0;
+    }
 `;
 
 export default function AppHeader ( { print, omit, total } ) {
     return (
-        <Wrapper className="app-header d-flex">
+        <Wrapper>
             <h1>
                 SimpleNote
                 <sup>

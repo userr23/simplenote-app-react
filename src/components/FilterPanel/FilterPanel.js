@@ -1,13 +1,13 @@
 import React            from 'react';
 import ItemStatusFilter from '../ItemStatusFilter';
-import SearchPanel      from '../SearchPanel';
+import SearchInput      from '../SearchInput';
 import styled           from 'styled-components';
 
 const Wrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    margin: 0 0 1rem;
-    padding: 1rem 0.5rem;
+    margin: 0.15rem 0 1rem;
+    padding: 1rem;
     background-color: #2A3D4C;
 `;
 
@@ -16,7 +16,7 @@ export default function FilterPanel ( { onSearchChange, filter, onFilterChange }
 
     return (
         <Wrapper>
-            <SearchPanel
+            <SearchInput
                 onSearchChange={onSearchChange} />
             <ItemStatusFilter
                 filter={filter}

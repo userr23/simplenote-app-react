@@ -28,6 +28,8 @@ export default function App () {
     const [ notesData, setNotesData ] = useStateWithLocalStorage( 'myNotes' );
     const [ term, setTerm ]           = useState( '' );
     const [ filter, setFilter ]       = useState( 'all' );
+    const [ panelVisible, setPanelVisible ]       = useState( false );
+    const [ sortDescending, setSortDescending ]       = useState( false );
 
 
     const createItem = ( label ) => {
@@ -91,7 +93,7 @@ export default function App () {
     const onItemsPrint = () => {
         const itemsToPrint = notesData.filter( el => el.omit === false );
 
-        pdfGenerator( itemsToPrint );
+        pdfGenerator( itemsToPrint, sortDescending );
     };
 
     const toggleProperty = ( arr, id, propName ) => {
@@ -162,6 +164,14 @@ export default function App () {
         }
     };
 
+    const onPanelVisibleCheck = ( checked ) => {
+        setPanelVisible( checked );
+    };
+
+    const onSortDescending = ( checked ) => {
+        setSortDescending( checked );
+    };
+
     const visibleItems = toFilter(
         search( notesData, term ), filter );
 
@@ -178,13 +188,17 @@ export default function App () {
                 onItemAdded={onItemAdded}
                 onItemsClear={onItemsClear}
                 onItemsPrint={onItemsPrint}
+                panelVisible={panelVisible}
+                onPanelVisibleCheck={onPanelVisibleCheck}
+                sortDescending={sortDescending}
+                onSortDescending={onSortDescending}
             />
 
-            <FilterPanel
+            { panelVisible && <FilterPanel
                 onSearchChange={onSearchChange}
                 filter={filter}
                 onFilterChange={onFilterChange}
-            />
+            />}
 
             <ItemsList
                 items={visibleItems}
@@ -193,6 +207,7 @@ export default function App () {
                 onToggleEdit={onToggleEdit}
                 onToggleImportant={onToggleImportant}
                 onToggleOmit={onToggleOmit}
+                sortDescending={sortDescending}
             />
         </PageWrapper>
     );

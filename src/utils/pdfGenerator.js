@@ -5,9 +5,9 @@ import * as JsPDF from 'jspdf';
 import '../fonts/Cormorant-Regular-normal';
 
 
-export default function pdfGenerator ( itemsArray = [], sortDescending ) {
+export default function pdfGenerator ( itemsArray = [], sortDescending = false ) {
     if ( itemsArray.length > 0 ) {
-        const arr       = sortDescending ? itemsArray : [ ...itemsArray ].reverse();
+        const arr       = sortDescending ? [ ...itemsArray ].reverse() : itemsArray;
         const itemsList = arr.reduce( ( res, item ) => {
             res += item.added + '\n' + item.label + '\n\n';
             return res;

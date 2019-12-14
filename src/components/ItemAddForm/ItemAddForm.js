@@ -2,16 +2,29 @@ import React, { useState } from 'react';
 import Form                from '../Form';
 import FormActionLine      from '../FormActionLine';
 import Input               from '../Input';
+import CheckBox            from '../CheckBox';
 import loremGenerator      from '../../utils/loremGenerator';
 import styled              from 'styled-components';
 
 const AddForm = styled( Form )`
     margin: 1rem 0 0;
-    padding: 2rem 0.5rem;
-    background-color: #23333F;
+    padding: 1rem;
+    background-color: #2A3D4C;
 `;
 
-export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint } ) {
+const LineWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const CheckBoxesWrapper = styled.div`
+  flex-direction: column;
+`;
+
+export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint,
+                                          panelVisible, onPanelVisibleCheck,
+                                          sortDescending, onSortDescending } ) {
 
     const [ label, setLabel ] = useState( '' );
 
@@ -52,9 +65,24 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint 
                 placeholder="Type your note here"
                 onChange={e => setLabel( e.target.value )}
             />
-            <FormActionLine
-                actions={actions}
-            />
+
+            <LineWrapper>
+                <FormActionLine
+                    actions={actions}
+                />
+                <CheckBoxesWrapper>
+                    <CheckBox
+                        labelText="Show Filter panel"
+                        checked={panelVisible}
+                        onChange={onPanelVisibleCheck}
+                    />
+                    <CheckBox
+                        labelText="Sort notes descending"
+                        checked={sortDescending}
+                        onChange={onSortDescending}
+                    />
+                </CheckBoxesWrapper>
+            </LineWrapper>
         </AddForm>
 
     );
