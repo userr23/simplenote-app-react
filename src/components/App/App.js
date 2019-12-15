@@ -18,18 +18,22 @@ const useStateWithLocalStorage = ( localStorageKey ) => {
     const [ value, setValue ] = useState( Storage.get( localStorageKey ) || [] );
 
     useEffect( () => {
-        Storage.set( localStorageKey, value );
+        if ( !value || !value.length ) {
+            Storage.remove( localStorageKey );
+        } else {
+            Storage.set( localStorageKey, value );
+        }
     } );
 
     return [ value, setValue ];
 };
 
 export default function App () {
-    const [ notesData, setNotesData ] = useStateWithLocalStorage( 'myNotes' );
-    const [ term, setTerm ]           = useState( '' );
-    const [ filter, setFilter ]       = useState( 'all' );
-    const [ panelVisible, setPanelVisible ]       = useState( false );
-    const [ sortDescending, setSortDescending ]       = useState( false );
+    const [ notesData, setNotesData ]           = useStateWithLocalStorage( 'myNotes' );
+    const [ term, setTerm ]                     = useState( '' );
+    const [ filter, setFilter ]                 = useState( 'all' );
+    const [ panelVisible, setPanelVisible ]     = useState( false );
+    const [ sortDescending, setSortDescending ] = useState( false );
 
 
     const createItem = ( label ) => {
@@ -85,9 +89,20 @@ export default function App () {
 
 
     const onItemsClear = () => {
-        setNotesData( () => {
-            return [];
-        } );
+        const visibleItems = toFilter(
+            search( notesData, term ), filter );
+
+        if ( visibleItems.length === notesData.length ) {
+            setNotesData( () => {
+                return [];
+            } );
+        } else {
+            setNotesData( () => {
+                return notesData
+                    .filter( item => visibleItems
+                        .findIndex( el => el.id === item.id ) === -1 );
+            } );
+        }
     };
 
     const onItemsPrint = () => {
@@ -194,7 +209,7 @@ export default function App () {
                 onSortDescending={onSortDescending}
             />
 
-            { panelVisible && <FilterPanel
+            {panelVisible && <FilterPanel
                 onSearchChange={onSearchChange}
                 filter={filter}
                 onFilterChange={onFilterChange}
