@@ -168,6 +168,8 @@ export default function App () {
         switch ( f ) {
             case 'all':
                 return items;
+            case 'edited':
+                return items.filter( item => item.edited );
             case 'print':
                 return items.filter( item => !item.omit );
             case 'omit':

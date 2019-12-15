@@ -4,9 +4,10 @@ import FormActionLine from '../../../FormActionLine';
 export default function ItemStatusFilter ( { filter, onFilterChange } ) {
     const buttonTypes = [
         { name: 'all', label: 'All' },
-        { name: 'print', label: 'Print' },
+        { name: 'print', label: 'To export' },
         { name: 'omit', label: 'Omit' },
-        { name: 'important', label: 'Important' }
+        { name: 'important', label: 'Important' },
+        { name: 'edited', label: 'Edited' }
     ];
 
     const actions = buttonTypes.map( ( { name, label } ) => {
