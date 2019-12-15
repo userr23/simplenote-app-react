@@ -32,7 +32,7 @@ export default function App () {
     const [ notesData, setNotesData ]           = useStateWithLocalStorage( 'myNotes' );
     const [ term, setTerm ]                     = useState( '' );
     const [ filter, setFilter ]                 = useState( 'all' );
-    const [ panelVisible, setPanelVisible ]     = useState( false );
+    const [ panelVisible, setPanelVisible ]     = useState( true );
     const [ sortDescending, setSortDescending ] = useState( false );
 
 
@@ -42,8 +42,8 @@ export default function App () {
             added    : `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`,
             edited   : '',
             edit     : false,
-            important: false,
-            omit     : false,
+            important: filter === 'important',
+            omit     : filter === 'omit',
             id       : 'item-' + Date.now()
         };
     };
