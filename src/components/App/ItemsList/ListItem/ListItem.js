@@ -58,13 +58,15 @@ export default function ListItem ( {
             <div className={footerClassName}>
                 <hr />
                 <div className="settings-block">
-                    <span>
-                    Added: {added}
-                    </span>
-                    {edited &&
-                    <span>
-                    Edited: {edited}
-                    </span>}
+                    <div className="item-status">
+                        <span>
+                            Added: {added}
+                        </span>
+                        {edited
+                            ? <span>Edited: {edited}</span>
+                            : <span>&nbsp;</span>
+                        }
+                    </div>
                     <div className="buttons-wrapper">
                         <button type="button"
                                 className="btn btn-outline-success btn-sm"

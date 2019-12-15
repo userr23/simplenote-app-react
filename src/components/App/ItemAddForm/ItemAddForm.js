@@ -72,12 +72,12 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint,
                 />
                 <CheckBoxesWrapper>
                     <CheckBox
-                        labelText="Show Filter panel"
+                        labelText="Show filter panel"
                         checked={panelVisible}
                         onChange={onPanelVisibleCheck}
                     />
                     <CheckBox
-                        labelText="Sort notes descending"
+                        labelText="Sort descending"
                         checked={sortDescending}
                         onChange={onSortDescending}
                     />

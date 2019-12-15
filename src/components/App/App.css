@@ -18,4 +18,8 @@ body {
     button {
         font-size: 0.95rem;
     }
+
+    .item-status {
+        flex-direction: column-reverse;
+    }
 }

@@ -16,6 +16,8 @@ Then click the "Print to PDF" button to create and download the PDF file.
 - Disable selected note for export
 - Delete selected note
 - Delete all notes
+- Delete only filtered notes
+- Show/Hide filter panel
 - Sort notes Descending or Ascending (default)
 - Export all available notes to PDF
 

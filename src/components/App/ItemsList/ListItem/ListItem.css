@@ -16,13 +16,26 @@ hr {
     justify-content: space-between;
     align-items: flex-end;
     flex-wrap: wrap;
-    font-size: 0.9rem;
     color: lightslategrey;
+}
+
+.item-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-right: 7rem;
+}
+
+.item-status span {
+    font-size: 0.8rem;
+    line-height: 1.15rem;
 }
 
 .buttons-wrapper {
     display: flex;
     justify-content: flex-end;
+    font-size: 0.9rem;
 }
 
 .buttons-wrapper button {
@@ -55,4 +68,12 @@ hr {
 
 .invisible {
     display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+    .item-status {
+        flex-direction: column-reverse;
+        margin-right: 1rem;
+    }
 }
