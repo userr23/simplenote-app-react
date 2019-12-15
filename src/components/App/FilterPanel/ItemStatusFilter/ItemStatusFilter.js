@@ -1,5 +1,5 @@
 import React          from 'react';
-import FormActionLine from '../FormActionLine';
+import FormActionLine from '../../../FormActionLine';
 
 export default function ItemStatusFilter ( { filter, onFilterChange } ) {
     const buttonTypes = [

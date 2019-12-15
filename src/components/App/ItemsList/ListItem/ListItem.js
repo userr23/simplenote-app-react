@@ -1,6 +1,6 @@
 import React               from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ItemEditForm        from '../ItemEditForm';
+import ItemEditForm        from '../../ItemEditForm';
 
 export default function ListItem ( {
                                        id, label, onDeleted, onEditLabel,

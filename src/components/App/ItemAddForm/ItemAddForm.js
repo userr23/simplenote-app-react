@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Form                from '../Form';
-import FormActionLine      from '../FormActionLine';
-import Input               from '../Input';
-import CheckBox            from '../CheckBox';
-import loremGenerator      from '../../utils/loremGenerator';
+import Form                from '../../Form';
+import FormActionLine      from '../../FormActionLine';
+import Input               from '../../Input';
+import CheckBox            from '../../CheckBox';
+import loremGenerator      from '../../../utils/loremGenerator';
 import styled              from 'styled-components';
 
 const AddForm = styled( Form )`

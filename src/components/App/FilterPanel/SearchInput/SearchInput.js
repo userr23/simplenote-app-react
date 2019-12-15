@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Input               from '../Input';
+import Input               from '../../../Input';
 
 export default function SearchInput ( { onSearchChange } ) {
 

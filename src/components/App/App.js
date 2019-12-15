@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import PageWrapper from '../PageWrapper';
-import AppHeader   from '../AppHeader';
-import FilterPanel from '../FilterPanel';
-import ItemsList   from '../ItemsList';
-import ItemAddForm from '../ItemAddForm';
+import AppHeader   from './AppHeader';
+import FilterPanel from './FilterPanel';
+import ItemsList   from './ItemsList';
+import ItemAddForm from './ItemAddForm';
 
 import Storage      from '../../utils/Storage';
 import pdfGenerator from '../../utils/pdfGenerator';

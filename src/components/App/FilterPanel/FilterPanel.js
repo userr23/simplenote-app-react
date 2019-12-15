@@ -1,6 +1,6 @@
 import React            from 'react';
-import ItemStatusFilter from '../ItemStatusFilter';
-import SearchInput      from '../SearchInput';
+import ItemStatusFilter from './ItemStatusFilter';
+import SearchInput      from './SearchInput';
 import styled           from 'styled-components';
 
 const Wrapper = styled.div`
