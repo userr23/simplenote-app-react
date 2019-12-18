@@ -31,16 +31,20 @@ const useStateWithLocalStorage = ( localStorageKey ) => {
 
 export default function App () {
     const [ notesData, setNotesData ]     = useStateWithLocalStorage( STORAGE_NAME );
-    const [ storageSize, setStorageSize ] = useState( Storage.size( STORAGE_NAME ) || '' );
+    const [ storageSize, setStorageSize ] = useState( Storage.size( STORAGE_NAME ) || 0 );
 
     useEffect( () => {
-        setStorageSize( Storage.size( STORAGE_NAME ) );
+        onStorageSizeChange( STORAGE_NAME );
     } );
 
     const [ term, setTerm ]                     = useState( '' );
     const [ filter, setFilter ]                 = useState( 'all' );
     const [ panelVisible, setPanelVisible ]     = useState( true );
     const [ sortDescending, setSortDescending ] = useState( false );
+
+    const onStorageSizeChange = ( localStorageKey ) => {
+        setStorageSize( Storage.size( localStorageKey ) );
+    };
 
     const createItem = ( label ) => {
         return {
