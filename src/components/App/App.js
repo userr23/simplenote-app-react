@@ -30,13 +30,13 @@ const useStateWithLocalStorage = ( localStorageKey ) => {
 };
 
 export default function App () {
-    const [ notesData, setNotesData ]     = useStateWithLocalStorage( STORAGE_NAME );
-    const [ storageSize, setStorageSize ] = useState( Storage.size( STORAGE_NAME ) || 0 );
+    const [ notesData, setNotesData ] = useStateWithLocalStorage( STORAGE_NAME );
 
     useEffect( () => {
         onStorageSizeChange( STORAGE_NAME );
     } );
 
+    const [ storageSize, setStorageSize ]       = useState( Storage.size( STORAGE_NAME ) || 0 );
     const [ term, setTerm ]                     = useState( '' );
     const [ filter, setFilter ]                 = useState( 'all' );
     const [ panelVisible, setPanelVisible ]     = useState( true );
