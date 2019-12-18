@@ -9,6 +9,7 @@ import ItemAddForm from './ItemAddForm';
 import Storage      from '../../utils/Storage';
 import pdfGenerator from '../../utils/pdfGenerator';
 
+const STORAGE_NAME = 'myNotes';
 
 const useStateWithLocalStorage = ( localStorageKey ) => {
     if ( !localStorageKey ) {
@@ -29,12 +30,17 @@ const useStateWithLocalStorage = ( localStorageKey ) => {
 };
 
 export default function App () {
-    const [ notesData, setNotesData ]           = useStateWithLocalStorage( 'myNotes' );
+    const [ notesData, setNotesData ]     = useStateWithLocalStorage( STORAGE_NAME );
+    const [ storageSize, setStorageSize ] = useState( Storage.size( STORAGE_NAME ) || '' );
+
+    useEffect( () => {
+        setStorageSize( Storage.size( STORAGE_NAME ) );
+    } );
+
     const [ term, setTerm ]                     = useState( '' );
     const [ filter, setFilter ]                 = useState( 'all' );
     const [ panelVisible, setPanelVisible ]     = useState( true );
     const [ sortDescending, setSortDescending ] = useState( false );
-
 
     const createItem = ( label ) => {
         return {
@@ -103,6 +109,7 @@ export default function App () {
                         .findIndex( el => el.id === item.id ) === -1 );
             } );
         }
+
     };
 
     const onItemsPrint = () => {
@@ -154,7 +161,7 @@ export default function App () {
     };
 
     const search = ( items, word ) => {
-        if ( word.length === 0 ) {
+        if ( !word.length ) {
             return items;
         }
 
@@ -199,7 +206,7 @@ export default function App () {
 
     return (
         <PageWrapper template='45rem'>
-            <AppHeader print={printCount} omit={omitCount} total={totalCount} />
+            <AppHeader print={printCount} omit={omitCount} total={totalCount} storageSize={storageSize} />
 
             <ItemAddForm
                 onItemAdded={onItemAdded}
@@ -229,3 +236,4 @@ export default function App () {
         </PageWrapper>
     );
 }
+

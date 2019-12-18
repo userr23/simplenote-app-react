@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     }
 `;
 
-export default function AppHeader ( { print, omit, total } ) {
+export default function AppHeader ( { print, omit, total, storageSize } ) {
     return (
         <Wrapper>
             <h1>
@@ -29,14 +29,18 @@ export default function AppHeader ( { print, omit, total } ) {
                     <FontAwesomeIcon icon={[ 'fab', 'react' ]} />
                 </sup>
             </h1>
-            {( omit !== 0 ) && <h5>{print} available to print, {omit} omitted</h5>}
-            {( omit === 0 ) && <h5>All {total} notes available to print</h5>}
+            <div>
+                <h5>{storageSize}</h5>
+                {( omit !== 0 ) && <h5>{print} available to print, {omit} omitted</h5>}
+                {( omit === 0 ) && <h5>All {total} notes available to print</h5>}
+            </div>
         </Wrapper>
     );
 }
 
 AppHeader.propTypes = {
-    print: PropTypes.number,
-    omit : PropTypes.number,
-    total: PropTypes.number
+    print      : PropTypes.number,
+    omit       : PropTypes.number,
+    total      : PropTypes.number,
+    storageSize: PropTypes.string
 };
