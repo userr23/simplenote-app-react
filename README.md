@@ -6,10 +6,10 @@ An application to make simple notes and export them to PDF.
 
 ## Quick testing
 Use "Add" button repeatedly without typing to generate a lot of test notes.
-Then click the "Print to PDF" button to create and download the PDF file.
+Then click the "Export to PDF" button to create and download the PDF file.
 
 ## Features
-- Create custom note
+- Create custom note (if the "important" or "omit" filter was selected, a new note is created with the option "important" or "omit" enabled)
 - Generate test note
 - Edit selected note
 - Mark selected note as important
