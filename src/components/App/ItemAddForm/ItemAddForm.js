@@ -22,9 +22,9 @@ const CheckBoxesWrapper = styled.div`
   flex-direction: column;
 `;
 
-export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint,
+export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsExport,
                                           panelVisible, onPanelVisibleCheck,
-                                          sortDescending, onSortDescending } ) {
+                                          sortAscending, onSortAscending } ) {
 
     const [ label, setLabel ] = useState( '' );
 
@@ -53,7 +53,7 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint,
             id      : 'export',
             type    : 'secondary',
             text    : 'Export to PDF',
-            onClick : onItemsPrint,
+            onClick : onItemsExport,
             disabled: false
         }
     ];
@@ -77,9 +77,9 @@ export default function ItemAddForm ( { onItemAdded, onItemsClear, onItemsPrint,
                         onChange={onPanelVisibleCheck}
                     />
                     <CheckBox
-                        labelText="Sort descending"
-                        checked={sortDescending}
-                        onChange={onSortDescending}
+                        labelText="Sort ascending"
+                        checked={sortAscending}
+                        onChange={onSortAscending}
                     />
                 </CheckBoxesWrapper>
             </LineWrapper>

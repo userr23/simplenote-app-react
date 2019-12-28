@@ -2,7 +2,13 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![code size](https://img.shields.io/github/languages/code-size/userr23/simplenote-app-react)](https://img.shields.io/github/languages/code-size/userr23/simplenote-app-react)
 
+English | [Русский](./README-RU.md)
+
 An application to make simple notes and export them to PDF.
+
+![Demo-App](./demo_app.png)
+
+![Demo-PDF](./demo_pdf.png)
 
 ## Quick testing
 Use "Add" button repeatedly without typing to generate a lot of test notes.
@@ -18,7 +24,7 @@ Then click the "Export to PDF" button to create and download the PDF file.
 - Delete all notes
 - Delete only filtered notes
 - Show/Hide filter panel
-- Sort notes Descending or Ascending (default)
+- Sort notes Ascending or Descending (default)
 - Export all available notes to PDF
 
 ## Built with 

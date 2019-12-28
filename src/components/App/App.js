@@ -40,11 +40,7 @@ export default function App () {
     const [ term, setTerm ]                     = useState( '' );
     const [ filter, setFilter ]                 = useState( 'all' );
     const [ panelVisible, setPanelVisible ]     = useState( true );
-    const [ sortDescending, setSortDescending ] = useState( false );
-
-    const onStorageSizeChange = ( localStorageKey ) => {
-        setStorageSize( Storage.size( localStorageKey ) );
-    };
+    const [ sortAscending, setSortAscending ] = useState( false );
 
     const createItem = ( label ) => {
         return {
@@ -116,10 +112,10 @@ export default function App () {
 
     };
 
-    const onItemsPrint = () => {
-        const itemsToPrint = notesData.filter( el => el.omit === false );
+    const onItemsExport = () => {
+        const itemsToExport = notesData.filter( el => el.omit === false );
 
-        pdfGenerator( itemsToPrint, sortDescending );
+        pdfGenerator( itemsToExport, sortAscending );
     };
 
     const toggleProperty = ( arr, id, propName ) => {
@@ -181,7 +177,7 @@ export default function App () {
                 return items;
             case 'edited':
                 return items.filter( item => item.edited );
-            case 'print':
+            case 'export':
                 return items.filter( item => !item.omit );
             case 'omit':
                 return items.filter( item => item.omit );
@@ -196,30 +192,42 @@ export default function App () {
         setPanelVisible( checked );
     };
 
-    const onSortDescending = ( checked ) => {
-        setSortDescending( checked );
+    const onSortAscending = ( checked ) => {
+        setSortAscending( checked );
+    };
+
+    const onStorageSizeChange = ( localStorageKey ) => {
+        setStorageSize( Storage.size( localStorageKey ) );
     };
 
     const visibleItems = toFilter(
         search( notesData, term ), filter );
 
-    const omitCount  = notesData
+    const omitCount   = notesData
         .filter( el => el.omit === true ).length;
-    const totalCount = notesData.length;
-    const printCount = totalCount - omitCount;
+    const editedCount = notesData
+        .filter( el => el.edited ).length;
+    const totalCount  = notesData.length;
+    const exportCount = totalCount - omitCount;
 
     return (
         <PageWrapper template='45rem'>
-            <AppHeader print={printCount} omit={omitCount} total={totalCount} storageSize={storageSize} />
+            <AppHeader
+                editedCount={editedCount}
+                exportCount={exportCount}
+                omitCount={omitCount}
+                total={totalCount}
+                storageSize={storageSize}
+            />
 
             <ItemAddForm
                 onItemAdded={onItemAdded}
                 onItemsClear={onItemsClear}
-                onItemsPrint={onItemsPrint}
+                onItemsExport={onItemsExport}
                 panelVisible={panelVisible}
                 onPanelVisibleCheck={onPanelVisibleCheck}
-                sortDescending={sortDescending}
-                onSortDescending={onSortDescending}
+                sortAscending={sortAscending}
+                onSortAscending={onSortAscending}
             />
 
             {panelVisible && <FilterPanel
@@ -235,7 +243,7 @@ export default function App () {
                 onToggleEdit={onToggleEdit}
                 onToggleImportant={onToggleImportant}
                 onToggleOmit={onToggleOmit}
-                sortDescending={sortDescending}
+                sortAscending={sortAscending}
             />
         </PageWrapper>
     );

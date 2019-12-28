@@ -12,15 +12,14 @@ const Wrapper = styled.div`
 `;
 
 
-export default function FilterPanel ( { onSearchChange, filter, onFilterChange } ) {
+export default function FilterPanel ( props ) {
 
     return (
         <Wrapper>
             <SearchInput
-                onSearchChange={onSearchChange} />
+                onSearchChange={props.onSearchChange} />
             <ItemStatusFilter
-                filter={filter}
-                onFilterChange={onFilterChange}
+                {...props}
             />
         </Wrapper>
     );

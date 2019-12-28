@@ -27,7 +27,18 @@ const InformContainer = styled.div`
     }
 `;
 
-export default function AppHeader ( { print, omit, total, storageSize } ) {
+export default function AppHeader ( { editedCount, exportCount, omitCount, total, storageSize } ) {
+
+    const exportInfoMessage = omitCount
+        ? `${exportCount} available to export, ${omitCount} omitted`
+        : total
+            ? 'All notes available to export'
+            : 'Type your first note!';
+
+    const editedInfoMessage = editedCount
+        ? `Total notes: ${total} (${editedCount} edited)`
+        : `Total notes: ${total}`;
+
     return (
         <Wrapper>
             <h1>
@@ -38,18 +49,16 @@ export default function AppHeader ( { print, omit, total, storageSize } ) {
             </h1>
             <InformContainer>
                 <p>{storageSize}</p>
-                <p>Total notes: {total}</p>
-                {( omit !== 0 ) && <p>{print} available to export, {omit} omitted</p>}
-                {( ( omit === 0 ) && ( total !== 0 ) ) && <p>All notes available to export</p>}
-                {( !total ) && <p>Type your first note!</p>}
+                <p>{editedInfoMessage}</p>
+                <p>{exportInfoMessage}</p>
             </InformContainer>
         </Wrapper>
     );
 }
 
 AppHeader.propTypes = {
-    print      : PropTypes.number,
-    omit       : PropTypes.number,
+    exportCount: PropTypes.number,
+    omitCount  : PropTypes.number,
     total      : PropTypes.number,
     storageSize: PropTypes.string
 };
